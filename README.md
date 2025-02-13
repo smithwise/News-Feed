@@ -12,11 +12,13 @@ How this should function:
   1. Gather Information
        a. aggregator: feedparser
        b. list of sites with RSS feeds:
-         - https://www.bleepingcomputer.com/feed/ 
-         - https://krebsonsecurity.com/feed/
-         - https://feeds.feedburner.com/TheHackersNews?format=xml
-         - http://www.darkreading.com/rss/all.xml
-         - https://hnrss.org/frontpage
+
+Krebs on Security: https://krebsonsecurity.com/feed/
+The Hacker News: https://feeds.feedburner.com/TheHackersNews
+SecurityWeek: https://feeds.feedburner.com/securityweek
+Dark Reading: https://www.darkreading.com/rss_simple.asp
+BleepingComputer: https://www.bleepingcomputer.com/feed/
+
       c. CVE list feed from NIST: https://nvd.nist.gov/vuln/data-feeds
          - on record suggesting API calls over data feed
          - not clear how this might be needed. I just want a link to CVE information, not a download.
