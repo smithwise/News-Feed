@@ -10,18 +10,13 @@ I have no background in programming or computer science, so the code found here 
 
 How this should function:
   1. Gather Information
-       a. aggregator: feedparser
-       b. list of sites with RSS feeds:
-
-Krebs on Security: https://krebsonsecurity.com/feed/
-The Hacker News: https://feeds.feedburner.com/TheHackersNews
-SecurityWeek: https://feeds.feedburner.com/securityweek
-Dark Reading: https://www.darkreading.com/rss_simple.asp
-BleepingComputer: https://www.bleepingcomputer.com/feed/
-
-      c. CVE list feed from NIST: https://nvd.nist.gov/vuln/data-feeds
-         - on record suggesting API calls over data feed
-         - not clear how this might be needed. I just want a link to CVE information, not a download.
+     * aggregator: feedparser
+     * RSS feeds:
+       * Krebs on Security: https://krebsonsecurity.com/feed/
+       * The Hacker News: https://feeds.feedburner.com/TheHackersNews
+       * SecurityWeek: https://feeds.feedburner.com/securityweek
+       * Dark Reading: https://www.darkreading.com/rss_simple.asp
+       * BleepingComputer: https://www.bleepingcomputer.com/feed/
   3. Format Gathered Data
   4. Deliver Formatted Data
   5. Cleanup old data
