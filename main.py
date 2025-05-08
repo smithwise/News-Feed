@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup #HTML parsing
 import requests #HTTP request manipulation
-from datetime import date
+from datetime import date #just in case, plans for date based limiting
 import csv #used with date to generate output file, not yet implemented
 
 # "these are surprise variables that will help us later, huh-huh"
