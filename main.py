@@ -1,44 +1,44 @@
-from bs4 import BeautifulSoup #HTML parsing
-import requests #HTTP request manipulation
-from datetime import date #just in case, plans for date based limiting
-import csv #used with date to generate output file, not yet implemented
+import requests
+from bs4 import BeautifulSoup
+from datetime import date
+import csv
 
-# "these are surprise variables that will help us later, huh-huh"
-article_dict = {}
-data_out=[]
-today = date.today()
-filename = f'BC-{today}.csv'
-url = "https://bleepingcomputer.com/news/"
+# Constants
+URL = "https://bleepingcomputer.com/news/"
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/135.0.0.0 Safari/537.36"
+    )
+}
 
-# testing for page fetch success
-headers = { #bypass bot protection by adding UAS to http headers
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                  "AppleWebKit/537.36 (KHTML, like Gecko) "
-                  "Chrome/135.0.0.0 Safari/537.36"}
-response = requests.get(url, headers=headers)
-if response.status_code == 200:
-    html_content = response.text # stores the HTML for parsing below
-else:
-    ermsg = f"Failed to fetch webpage Response Status Code:{response.status_code}"
-    print(ermsg)
+# Attempt to fetch page
+response = requests.get(URL, headers=HEADERS)
+if response.status_code != 200:
+    print(f"Failed to fetch webpage. Status Code: {response.status_code}")
+    exit()
 
-# BS4 to parse the html
-soup = BeautifulSoup(html_content, 'html.parser')
+# Parse HTML content
+soup = BeautifulSoup(response.text, 'html.parser')
 articles = soup.find_all('div', class_='bc_latest_news_text')
 
-# iterate through articles and print titles/links, later we will convert to dict
+# Extract articles into list of dicts
+data_out = []
 for article in articles:
     link_tag = article.find('a')
-    title = link_tag.get_text(strip=True) #strips the <> bit
-    link = link_tag['href']
-    article_dict.update({title: link})
+    if link_tag:
+        title = link_tag.get_text(strip=True)
+        link = link_tag['href']
+        data_out.append({"title": title, "link": link})
 
-#listing dictionary entries as tuples
-for key,value in article_dict.items():
-    data_out.append({key:value})
+# Output results to console
+for i, article in enumerate(data_out, start=1):
+    print(f"{i}. {article['title']} -> {article['link']}")
 
-# adding article count column, and iterating to print each article entry for each skimming, not necessary for end product
-entry_no=0
-for entry in data_out:
-    entry_no +=1
-    print(f'{entry_no} {entry}')
+# Write output to CSV
+filename = f"BC-{date.today()}.csv"
+with open(filename, mode='w', newline='', encoding='utf-8') as file:
+    writer = csv.DictWriter(file, fieldnames=["title", "link"])
+    writer.writeheader()
+    writer.writerows(data_out)
