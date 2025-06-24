@@ -34,7 +34,7 @@ for article in articles:
 
 # Output results to console
 for i, article in enumerate(data_out, start=1):
-    print(f"{i}. {article['title']} -> {article['link']}")
+    print(f"{i}. {article['title']}")
 
 # Write output to CSV
 filename = f"BC-{date.today()}.csv"
