@@ -1,0 +1,1 @@
+0 8 * * * /mnt/newsdrive/newsfeed-project/scripts/run_scraper.sh
