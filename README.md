@@ -11,12 +11,15 @@ WIP still under construction - pardon the mess
 _______________________________________________________________
 
 -=-=-=-=-=-=--=- INTRODUCTION -=-=-=-=-=-=--=-
+
 HelloWorld, I am a security researcher and practitioner and working on python projects to gain a firmer grasp on automation and build a portfolio of small useful tools that I can leverage. I have little experience with script writing so take the contents of this project with a grain of salt. Furthermore I have leveraged LLMs to help generate and test this code, and to my eyes it looks good. Take another pinch of salt for that one.
 
 -=-=-=-=-=-=--=- This Project -=-=-=-=-=-=--=-
+
 This project is meant to scrape sites for security headlines and catalogue them into a weekly digest. The contents are scraped, the titles and urls are stored in CSVs dated for the scrape, then the weekly digest will dedup headlines and combine the CSVs from the last 7 days and the previous digest. From there the digest can be sent via email message, or imported to a website for tabling.
 
 -=-=-=-=-=-=-=- Quick Start Scripts -=-=-=-=-=--=-=-
+
 The locations referenced in the script are specific to my set up, so you can either change the directory paths to your preference or create the following directory tree:
 
 /mnt/newsdrive/newsfeed-project
@@ -37,6 +40,7 @@ The locations referenced in the script are specific to my set up, so you can eit
 ________________________________________________________________
                Current Stage and Next Steps
 ________________________________________________________________
+
 Current: I have the scraper in production, and am staging out the weekly digest. 
     1. crontab is running a shell script daily at 8am local time
 Next Up: Digest creation, and cleanup routines. Then making things better.
