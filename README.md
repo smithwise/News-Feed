@@ -15,6 +15,25 @@ HelloWorld, I am a security researcher and practitioner and working on python pr
 
 -=-=-=-=-=-=--=- This Project -=-=-=-=-=-=--=-
 This project is meant to scrape sites for security headlines and catalogue them into a weekly digest. The contents are scraped, the titles and urls are stored in CSVs dated for the scrape, then the weekly digest will dedup headlines and combine the CSVs from the last 7 days and the previous digest. From there the digest can be sent via email message, or imported to a website for tabling.
+
+-=-=-=-=-=-=-=- Quick Start Scripts -=-=-=-=-=--=-=-
+The locations referenced in the script are specific to my set up, so you can either change the directory paths to your preference or create the following directory tree:
+
+/mnt/newsdrive/newsfeed-project
+(I mounted an HDD for this to my server, this is that mounted directory)
+  ├── archives
+    (BC-YYYY-MM-DD.csv is created here via script)
+  ├── digests
+    (Digest-YYYY-MM-DD.csv will be created here once integrated)
+  ├── logs
+    (scraper.log is created here via script)
+  ├── scripts
+    (Main script inventory, currently bc_scraper.py and run_scraper.sh)
+  ├── tmp
+  └── venv
+    (virtual environment for the application, nothing special done here just generate the venv with defaults.)
+
+
 ________________________________________________________________
                Current Stage and Next Steps
 ________________________________________________________________
