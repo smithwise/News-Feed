@@ -1,8 +1,6 @@
 # step 1 - receive csv inputs (headline & link)
 from datetime import date, timedelta  #identifying last week of files via REGEX
 import csv #reading archives and creating digest files
-import os #directory pathing and file admin
-import shutil #for moving files
 
 today = date.today()
 date_scope = []
@@ -10,6 +8,15 @@ digest_dict = {}
 
 for i in range(7):  #identify relevant dates for digest
     date_scope.append(str(today - timedelta(i))) #tuck date objects as string into list
+
+''' for testing only, leave commented out
+for date in date_scope:
+    date_name="BC-"+date+".csv"
+    with open(date_name, "w", newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['title','link'])
+        writer.writerow([f'{date_name} title',f'{date_name} link'])
+'''
 
 # step 2 - write inputs to dictionary for dedup
 for date in date_scope:
@@ -26,8 +33,9 @@ with open(filename, mode="w",  newline='', encoding='utf-8') as file:
     writer.writeheader()
     writer.writerows(digest_dict.values())
 
-print(digest_dict)
 ''' Misc needs
+#### need path awareness - source files, script, and output are all in separate locations
+
 # error logging
 ## (try...except) logic needed to log errors (if possible) for final script since this is running without oversight
 ## perhaps even including the error message in the digest email for the week that fails to run
@@ -45,10 +53,10 @@ print(digest_dict)
 
 
 ''' GIT Commit comment drafting
-first half draft of the Digest creation script. 
-Identifies the (BC-<date>.csv) archive files in scope, writes their contents to new dictionary
-- WIP creates new CSV from new dictionary
-- WIP moves scoped archive files into a new directory 
+Halfway done, added in (commented out) section to generate missing files for testing. Not needed in final product as files should arealdy be extant
+
+Working on path awareness, need to search for source files in another directory and out put files into another directory rather than the script directory.
+- WIP move scoped archive files into a new directory when done
 - SHOULD DO, run a temporary script on Pi to create an initial digest containing all previous articals
 - WIP add cron job to run digest script weekly on Tuesdays at 0600
 '''
