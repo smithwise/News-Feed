@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 # Constants
+log_dir = Path.cwd().parent / 'logs'
 URL = "https://bleepingcomputer.com/news/"
 HEADERS = {
     "User-Agent": (
@@ -18,8 +19,9 @@ HEADERS = {
 # Attempt to fetch page
 response = requests.get(URL, headers=HEADERS)
 if response.status_code != 200:
-    print(f"Failed to fetch webpage. Status Code: {response.status_code}")
-    exit()
+    with open(log_dir/'scraper_log.txt', 'a', newline='', encoding='utf-8') as log:
+        log.write(f'{date.today()} - Non-200 HTTP code \n status code: {response.status_code}\n')
+
 
 # Parse HTML content
 soup = BeautifulSoup(response.text, 'html.parser')
@@ -35,7 +37,6 @@ for article in articles:
         data_out.append({"title": title, "link": link})
 
 if not data_out:
-    log_dir = Path.cwd().parent / 'logs'
     with open(log_dir/'scraper_log.txt', 'a', newline='', encoding='utf-8') as log:
         log.write(f'{date.today()} - No articles found - Possible HTML structure change \n')
 
