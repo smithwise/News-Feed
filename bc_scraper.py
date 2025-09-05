@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import date
 import csv
+import os
+from pathlib import Path
 
 # Constants
 URL = "https://bleepingcomputer.com/news/"
@@ -31,6 +33,12 @@ for article in articles:
         title = link_tag.get_text(strip=True)
         link = link_tag['href']
         data_out.append({"title": title, "link": link})
+
+if not data_out:
+    log_dir = Path.cwd().parent / 'logs'
+    with open(log_dir/'scraper_log.txt', 'a', newline='', encoding='utf-8') as log:
+        log.write(f'{date.today()} - No articles found - Possible HTML structure change \n')
+
 
 # Output results to console
 for i, article in enumerate(data_out, start=1):
