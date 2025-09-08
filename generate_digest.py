@@ -9,8 +9,7 @@ digest_dict = {}
 log_content = ''
 
 # path variables for I/O file management
-cwd = Path.cwd()
-home_dir = cwd.parent
+home_dir = Path.cwd().parent
 input_dir = home_dir / 'archives'
 output_dir = home_dir / 'digests'
 
