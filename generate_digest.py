@@ -9,9 +9,10 @@ digest_dict = {}
 log_content = ''
 
 # path variables for I/O file management
-home_dir = Path.cwd().parent
-input_dir = home_dir / 'archives'
-output_dir = home_dir / 'digests'
+script_dir = Path(__file__).parent.absolute()  # parent here indicates the file's parent (directory)
+project_root = script_dir.parent  # parent folder of the scripts directory
+input_dir = project_root / 'archives'
+output_dir = project_root / 'digests'
 
 
 # identify relevant dates for digest
