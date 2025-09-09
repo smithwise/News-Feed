@@ -17,10 +17,10 @@ HEADERS = {
         "Chrome/139.0.0.0 Safari/537.36"  
     )
 }
-log_dir = Path.cwd().parent / 'logs'
-log_dir.mkdir(parents=True, exist_ok=True)
-output_dir = Path.cwd().parent / 'archives'
-output_dir.mkdir(parents=True, exist_ok=True)
+script_dir = Path(__file__).parent.absolute()  # parent here indicates the file's parent (directory)
+project_root = script_dir.parent  # parent folder of the scripts directory 
+log_dir = project_root / 'logs'
+output_dir = project_root / 'archives'
 filename = output_dir / f"BC-{date.today()}.csv"
 
 # Attempt to fetch page
